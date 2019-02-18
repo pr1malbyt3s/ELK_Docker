@@ -29,8 +29,11 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:6.6.0
     container_name: logstash
+    volumes:
+    - /elastic/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+    - /elastic/logstash/pipeline:/usr/share/logstash/pipeline
     ports:
-      - 5040:5040
+    - 5040:5040
     environment:
     - "LS_JAVA_OPTS= -Xms1G -Xmx1G"
     networks:
