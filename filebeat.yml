@@ -1,6 +1,8 @@
-filebeat.prospectors:
+filebeat.inputs:
 - type: log
   paths:
-  - /var/log/*.log
+  - /var/log/auth.log
+  - /var/log/syslog
 output.logstash:
-  hosts: ["localhost:5040"]
+       hosts: ["logstash:5040"]
+  #index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"
