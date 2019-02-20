@@ -1,8 +1,9 @@
 filebeat.inputs:
 - type: log
   paths:
-  - /var/log/auth.log
-  - /var/log/syslog
+    - /var/log/syslog
+    - /var/log/auth.log
+
 output.logstash:
-       hosts: ["logstash:5044"]
+  hosts: ["logstash:5044"]
   #index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"
