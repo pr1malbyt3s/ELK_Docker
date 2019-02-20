@@ -15,7 +15,7 @@ services:
     ports:
     - 9200:9200
     - 9300:9300
-    networks: 
+    networks:
     - elk
     
   kibana:
@@ -39,7 +39,7 @@ services:
     - ./logstash.yml:/usr/share/logstash/config/logstash.yml
     - ./lspipeline:/usr/share/logstash/pipeline
     ports:
-    - 5040:5040
+    - 5044:5044
     - 9600:9600
     networks: 
     - elk

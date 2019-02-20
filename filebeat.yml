@@ -4,5 +4,5 @@ filebeat.inputs:
   - /var/log/auth.log
   - /var/log/syslog
 output.logstash:
-       hosts: ["logstash:5040"]
+       hosts: ["logstash:5044"]
   #index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"
