@@ -4,6 +4,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
     container_name: elasticsearch
     environment:
+    - cluster.name=elk-hunter
     - bootstrap.memory_lock=true
     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -11,7 +12,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-    - ./esdata:/usr/share/elasticsearch/data
+    - ./elasticsearch/esdata:/usr/share/elasticsearch/data
     ports:
     - 9200:9200
     - 9300:9300
@@ -24,8 +25,8 @@ services:
     environment:
     - "LS_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
-    - ./logstash.yml:/usr/share/logstash/config/logstash.yml
-    - ./lspipeline:/usr/share/logstash/pipeline
+    - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+    - ./logstash/lspipeline:/usr/share/logstash/pipeline
     ports:
     - 5044:5044
     - 9600:9600
@@ -40,7 +41,7 @@ services:
     ports:
     - 5601:5601
     volumes:
-    - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     networks: 
     - elk
     depends_on:
@@ -50,7 +51,7 @@ services:
     image: docker.elastic.co/beats/filebeat:6.6.0
     container_name: filebeat
     volumes:
-    - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+    - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
     - /var/log:/var/log
     user: root
     networks:

@@ -4,3 +4,7 @@ filebeat.modules:
 output.elasticsearch:
       hosts: ["elasticsearch:9200"]
       index: "filebeat-%{+yyyy.MM.dd}"
+
+setup.template.name: "filebeat"
+
+setup.template.pattern: "filebeat-*"
