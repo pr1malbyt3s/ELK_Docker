@@ -17,19 +17,7 @@ services:
     - 9300:9300
     networks:
     - elk
-    
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.6.0
-    container_name: kibana
-    ports:
-    - 5601:5601
-    volumes:
-    - ./kibana.yml:/usr/share/kibana/config/kibana.yml
-    networks: 
-    - elk
-    depends_on:
-    - elasticsearch
-     
+
   logstash:
     image: docker.elastic.co/logstash/logstash:6.6.0
     container_name: logstash
@@ -45,7 +33,19 @@ services:
     - elk
     depends_on:
     - elasticsearch
-    
+       
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.6.0
+    container_name: kibana
+    ports:
+    - 5601:5601
+    volumes:
+    - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks: 
+    - elk
+    depends_on:
+    - elasticsearch
+     
   filebeat:
     image: docker.elastic.co/beats/filebeat:6.6.0
     container_name: filebeat
