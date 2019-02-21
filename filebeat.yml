@@ -1,9 +1,6 @@
-filebeat.inputs:
-- type: log
-  paths:
-    - /var/log/syslog
-    - /var/log/auth.log
+filebeat.modules:
+  - module: system
 
-output.logstash:
-  hosts: ["logstash:5044"]
-  #index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"
+output.elasticsearch:
+      hosts: ["elasticsearch:9200"]
+      index: "filebeat-%{+yyyy.MM.dd}"
